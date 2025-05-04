@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gscore.intern.dto.response.ScoreSubject;
 import com.gscore.intern.dto.response.StudentResponse;
+import com.gscore.intern.dto.response.StudentScoreResponse;
 import com.gscore.intern.model.Score;
 import com.gscore.intern.model.Student;
 import com.gscore.intern.repository.StudentRepository;
@@ -80,130 +81,42 @@ public class StudentServiceImpl implements StudentServiceInterface {
     }
 
     @Override
-    public List<StudentResponse> getStudentsTopGroupA(int n) {
-        List<Student> students = studentRepository.findTopNStudentsByGroupA(n)
+    public List<StudentScoreResponse> getStudentsTopGroup(String group, int n) {
+        List<StudentScoreResponse> students;
+        if (group.equals("A")) {
+            students = studentRepository.findTopNStudentsByGroupA(n)
                             .stream()
                             .limit(n)
                             .collect(Collectors.toList());
+        } else if (group.equals("B")) {
+            students = studentRepository.findTopNStudentsByGroupB(n)
+                            .stream()
+                            .limit(n)
+                            .collect(Collectors.toList());
+        } else if (group.equals("C")) {
+            students = studentRepository.findTopNStudentsByGroupC(n)
+                            .stream()
+                            .limit(n)
+                            .collect(Collectors.toList());
+        } else if (group.equals("D")) {
+            students = studentRepository.findTopNStudentsByGroupD(n)
+                            .stream()
+                            .limit(n)
+                            .collect(Collectors.toList());
+        }
+        else {
+            throw new RuntimeException("Invalid group: " + group);
+        }
         if (students.isEmpty()) {
-            throw new RuntimeException("No students found in group A");
+            throw new RuntimeException("No students found in group " + group);
         }
-        List<StudentResponse> studentResponses = new ArrayList<>();
-        for (Student student : students) {
-            List<ScoreSubject> scores = new ArrayList<>();
-            for (Score score : student.getScores()) {
-                String subjectName = score.getSubject().getName();
-                String scoreSubject = String.valueOf(score.getPoint());
-                if (subjectName.equals("ma_ngoai_ngu")) {
-                    scoreSubject = 'N' + String.valueOf((int) Math.floor(score.getPoint()));
-                }
-                scores.add(ScoreSubject.builder()
-                        .name(score.getSubject().getName())
-                        .score(scoreSubject)
-                        .build());
-            }
-            studentResponses.add(StudentResponse.builder()
-                    .id(student.getId())
-                    .scores(scores)
-                    .build());
-        }
-
-        return studentResponses;
+        return students;
     }
 
     @Override
-    public List<StudentResponse> getStudentsTopGroupB(int n) {
-        List<Student> students = studentRepository.findTopNStudentsByGroupB(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        if (students.isEmpty()) {
-            throw new RuntimeException("No students found in group B");
-        }
-        List<StudentResponse> studentResponses = new ArrayList<>();
-        for (Student student : students) {
-            List<ScoreSubject> scores = new ArrayList<>();
-            for (Score score : student.getScores()) {
-                String subjectName = score.getSubject().getName();
-                String scoreSubject = String.valueOf(score.getPoint());
-                if (subjectName.equals("ma_ngoai_ngu")) {
-                    scoreSubject = 'N' + String.valueOf((int) Math.floor(score.getPoint()));
-                }
-                scores.add(ScoreSubject.builder()
-                        .name(score.getSubject().getName())
-                        .score(scoreSubject)
-                        .build());
-            }
-            studentResponses.add(StudentResponse.builder()
-                    .id(student.getId())
-                    .scores(scores)
-                    .build());
-        }
-
-        return studentResponses;
-    }
-    @Override
-    public List<StudentResponse> getStudentsTopGroupC(int n) {
-        List<Student> students = studentRepository.findTopNStudentsByGroupC(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        if (students.isEmpty()) {
-            throw new RuntimeException("No students found in group C");
-        }
-        List<StudentResponse> studentResponses = new ArrayList<>();
-        for (Student student : students) {
-            List<ScoreSubject> scores = new ArrayList<>();
-            for (Score score : student.getScores()) {
-                String subjectName = score.getSubject().getName();
-                String scoreSubject = String.valueOf(score.getPoint());
-                if (subjectName.equals("ma_ngoai_ngu")) {
-                    scoreSubject = 'N' + String.valueOf((int) Math.floor(score.getPoint()));
-                }
-                scores.add(ScoreSubject.builder()
-                        .name(score.getSubject().getName())
-                        .score(scoreSubject)
-                        .build());
-            }
-            studentResponses.add(StudentResponse.builder()
-                    .id(student.getId())
-                    .scores(scores)
-                    .build());
-        }
-
-        return studentResponses;
+    public Object[] getNumberStudent() {
+        return studentRepository.countStudents();
     }
 
-    @Override
-    public List<StudentResponse> getStudentsTopGroupD(int n) {
-        List<Student> students = studentRepository.findTopNStudentsByGroupD(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        if (students.isEmpty()) {
-            throw new RuntimeException("No students found in group D");
-        }
-        List<StudentResponse> studentResponses = new ArrayList<>();
-        for (Student student : students) {
-            List<ScoreSubject> scores = new ArrayList<>();
-            for (Score score : student.getScores()) {
-                String subjectName = score.getSubject().getName();
-                String scoreSubject = String.valueOf(score.getPoint());
-                if (subjectName.equals("ma_ngoai_ngu")) {
-                    scoreSubject = 'N' + String.valueOf((int) Math.floor(score.getPoint()));
-                }
-                scores.add(ScoreSubject.builder()
-                        .name(score.getSubject().getName())
-                        .score(scoreSubject)
-                        .build());
-            }
-            studentResponses.add(StudentResponse.builder()
-                    .id(student.getId())
-                    .scores(scores)
-                    .build());
-        }
-
-        return studentResponses;
-    }
     
 }
