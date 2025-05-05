@@ -58,6 +58,9 @@ const AppHeader: React.FC = () => {
             )}
             {/* Cross Icon */}
           </button>
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+            G-SCORE
+          </span>
         </div>
         <div
           className={`${

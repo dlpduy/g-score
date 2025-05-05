@@ -34,13 +34,13 @@ export default function StudentTables() {
   return (
     <>
       <PageMeta title="Student Tables" description="This is group of students" />
-      <PageBreadcrumb pageTitle="Thống kê học sinh theo khối thi" />
+      <PageBreadcrumb pageTitle="Thống kê thí sinh theo khối thi" />
       
       {/* Bộ lọc và nút in */}
       <div className="flex flex-wrap justify-between items-center gap-4 mb-6 print:hidden">
         <div className="flex space-x-4">
           <div className="flex items-center">
-            <label htmlFor="studentCount" className="mr-2">Số lượng học sinh:</label>
+            <label htmlFor="studentCount" className="mr-2">Số lượng thí sinh:</label>
             <select
               id="studentCount"
               value={studentCount}
@@ -80,7 +80,7 @@ export default function StudentTables() {
 
       {/* Khu vực in */}
       <div id="print-area" className="space-y-6">
-        <ComponentCard title={`Danh sách ${studentCount} học sinh khối ${selectedGroup} có điểm cao nhất kì thi THPT Quốc Gia 2024`}>
+        <ComponentCard title={`Danh sách ${studentCount} thí sinh khối ${selectedGroup} có điểm cao nhất kì thi THPT Quốc Gia 2024`}>
           <StudentTableOne studentData={studentData} />
         </ComponentCard>
       </div>

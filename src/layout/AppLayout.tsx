@@ -30,28 +30,36 @@ const LayoutContent: React.FC = () => {
   //   </div>
   // );
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex flex-grow">
-        <AppSidebar />
-        <Backdrop />
-      </div>
-      
-      {/* Nội dung chính */}
+    <div className="min-h-screen flex">
+      {/* Sidebar luôn bên trái */}
+      <AppSidebar />
+  
+      {/* Wrapper chứa Header + Content + Footer */}
       <div
-        className={`flex-1 transition-all duration-300 ease-in-out ${
+        className={`flex flex-col flex-1 transition-all duration-300 ease-in-out ${
           isExpanded || isHovered ? "lg:ml-[290px]" : "lg:ml-[90px]"
         } ${isMobileOpen ? "ml-0" : ""}`}
       >
+        {/* Header */}
         <AppHeader />
-        <div className="p-4 mx-auto max-w-screen-xl md:p-6">
-          <Outlet />
-        </div>
+  
+        {/* Main content + footer */}
+        <main className="flex flex-col flex-1">
+          <div className="flex-grow p-4 mx-auto w-full max-w-screen-xl md:p-6">
+            <Outlet />
+          </div>
+  
+          {/* Footer */}
+          <AppFooter />
+        </main>
       </div>
-      
-      {/* Footer */}
-      <AppFooter />
+  
+      {/* Backdrop cho mobile */}
+      <Backdrop />
     </div>
   );
+  
+  
   
 };
 

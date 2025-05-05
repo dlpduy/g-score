@@ -3,7 +3,7 @@ import { ApexOptions } from "apexcharts";
 
 export default function StudentPersent(prop:any) {
   const { studentCount } = prop;
-  const persent = Math.round((studentCount[1] / (studentCount[0] + studentCount[1]) * 100) * 100) / 100
+  const persent = Math.round((studentCount[0] / studentCount[1] * 100) * 100) / 100
   const series = [persent];
   const options: ApexOptions = {
     colors: ["#465FFF"],
@@ -58,10 +58,9 @@ export default function StudentPersent(prop:any) {
         <div className="flex justify-between">
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-              Tỉ lệ tham gia thi
+              Tỉ lệ thí sinh tự do tham gia kì thi
             </h3>
             <p className="mt-1 text-gray-500 text-theme-sm dark:text-gray-400">
-              Tỉ lệ thí sinh tự do tham gia thi trong kì thi THPT Quốc Gia 2024
             </p>
           </div>
         </div>
@@ -76,11 +75,11 @@ export default function StudentPersent(prop:any) {
           </div>
 
           <span className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[95%] rounded-full bg-success-50 px-3 py-1 text-xs font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500">
-            +10%
+            +5%
           </span>
         </div>
         <p className="mx-auto mt-10 w-full max-w-[380px] text-center text-sm text-gray-500 sm:text-base">
-          Tỉ lệ thí sinh tự do tham gia thi kì thi đã tăng 10% so với kì thi năm ngoái.
+          Tỉ lệ thí sinh tự do tham gia thi kì thi đã tăng 5% so với kì thi năm ngoái.
         </p>
       </div>
     </div>

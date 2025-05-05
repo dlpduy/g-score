@@ -3,16 +3,14 @@ import PageMeta from "../../components/common/PageMeta";
 import StudentPersent from "../../components/ecommerce/MonthlyTarget";
 import { getNumerStudent } from "../../service/api.service";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import Button from "../../components/ui/button/Button";
 
 export default function Home() {
-  const [studentCount, setStudentCount] = useState<any>([0,0]);
+  const [studentCount, setStudentCount] = useState<any>([0,1]);
   const getTotalStudent = async () => {
     try {
       const response = await getNumerStudent();
       if (response.status === 200) {
-        setStudentCount(response.data[0]);
+        setStudentCount(response.data);
       } else {
         console.error("Error fetching student count:", response.status);
       }
@@ -24,12 +22,11 @@ export default function Home() {
   useEffect(() => {
     getTotalStudent();
   }, []);
-  const navigator = useNavigate();
 
   return (
     <>
       <PageMeta
-        title="Kì thi THPT Quốc Gia 2024"
+        title="G-Score Tra cứu điểm thi THPT Quốc Gia 2024"
         description="Trang tổng quan về kết quả kì thi THPT Quốc Gia 2024"
       />
       <div className="grid grid-cols-12 gap-4 md:gap-6">

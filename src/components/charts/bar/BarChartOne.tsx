@@ -49,7 +49,7 @@ export default function BarChartOne(props: any) {
     },
     yaxis: {
       title: {
-        text: "Số lượng học sinh",
+        text: "Số lượng thí sinh",
         style: {
           fontSize: "14px",
           fontWeight: 600,
@@ -78,11 +78,13 @@ export default function BarChartOne(props: any) {
         fontSize: "14px",
       },
       y: {
-        formatter: (val: number) => `${val} học sinh`,
+        formatter: (val: number) => `${formatNumber(val)} thí sinh`,
       },
     },
   };
-
+  const formatNumber = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   const convertChartData = (data: any[]) => {
     const subjectOrder = Array<any>();
     subjects.forEach((subject: any) => {
@@ -93,10 +95,10 @@ export default function BarChartOne(props: any) {
     });
 
     const series = [
-      { name: "Xuất sắc", data: [] as number[] },
-      { name: "Giỏi", data: [] as number[] },
-      { name: "Trung bình", data: [] as number[] },
-      { name: "Yếu", data: [] as number[] },
+      { name: "Xuất sắc (Điểm >= 8)", data: [] as number[] },
+      { name: "Giỏi(6 <= Điểm < 8)", data: [] as number[] },
+      { name: "Trung bình(4 <= Điểm < 6)", data: [] as number[] },
+      { name: "Yếu(Điểm < 4)", data: [] as number[] },
     ];
 
     subjectOrder.forEach((subject) => {

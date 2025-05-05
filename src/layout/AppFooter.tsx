@@ -8,7 +8,7 @@ const AppFooter = () => {
             <div className="flex flex-col items-center">
               <h4 className="text-2xl font-semibold text-center">Giới thiệu</h4>
               <p className="mt-4 text-sm text-left">
-                Đây là website quản lý điểm thi và thống kê học sinh, phục vụ cho nhu cầu tra cứu điểm và thống kê dữ liệu học sinh một cách nhanh chóng và chính xác.
+                Đây là website quản lý điểm thi và thống kê thí sinh, phục vụ cho nhu cầu tra cứu điểm và thống kê dữ liệu thí sinh một cách nhanh chóng và chính xác.
               </p>
             </div>
   

@@ -21,7 +21,7 @@ export default function EcommerceMetrics(props: any) {
               Tổng số thí sinh
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              {formatNumber(studentCount[0] + studentCount[1])}
+              {formatNumber(studentCount[1])}
             </h4>
           </div>
         </div>
@@ -36,7 +36,7 @@ export default function EcommerceMetrics(props: any) {
               Thí sinh tự do
             </span>
             <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              {formatNumber(studentCount[1])}
+              {formatNumber(studentCount[0])}
             </h4>
           </div>
         </div>

@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
     path: "/score-tables",
   },
   {
-    name: "Thống kê học sinh",
+    name: "Thống kê thí sinh",
     icon: <ListIcon/>,
     path: "/student-tables",
   },
