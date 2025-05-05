@@ -6,7 +6,6 @@ import com.gscore.intern.dto.response.StudentResponse;
 import com.gscore.intern.dto.response.StudentScoreResponse;
 
 public interface StudentServiceInterface {
-    List<StudentResponse> getAllStudents();
     StudentResponse getStudentById(String id);
     List<StudentScoreResponse> getStudentsTopGroupA(int n);
     List<StudentScoreResponse> getStudentsTopGroupB(int n);

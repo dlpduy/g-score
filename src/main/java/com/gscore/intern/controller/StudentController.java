@@ -21,14 +21,6 @@ public class StudentController {
     public StudentController(StudentServiceInterface studentService) {
         this.studentService = studentService;
     }
-    @GetMapping("")
-    public ResponseObject<List<StudentResponse>> getAllStudent() {
-        return ResponseObject.<List<StudentResponse>>builder()
-                .status(200)
-                .message("Student found")
-                .data(studentService.getAllStudents())
-                .build();
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ResponseObject<StudentResponse>> getStudentById(@PathVariable String id) {
