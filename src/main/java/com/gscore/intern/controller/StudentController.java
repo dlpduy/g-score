@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gscore.intern.dto.response.ResponseObject;
 import com.gscore.intern.dto.response.StudentResponse;
 import com.gscore.intern.dto.response.StudentScoreResponse;
-import com.gscore.intern.service.implement.StudentServiceImpl;
+import com.gscore.intern.service.inter.StudentServiceInterface;
 
 @RestController
 @RequestMapping("/api/v1/students")
 public class StudentController {
-    private final StudentServiceImpl studentService;
+    private final StudentServiceInterface studentService;
 
-    public StudentController(StudentServiceImpl studentService) {
+    public StudentController(StudentServiceInterface studentService) {
         this.studentService = studentService;
     }
     @GetMapping("")
@@ -39,8 +39,8 @@ public class StudentController {
                     .data(studentService.getStudentById(id))
                     .build());
         } catch (RuntimeException e) {
-            return ResponseEntity.status(404).body(ResponseObject.<StudentResponse>builder()
-                    .status(404)
+            return ResponseEntity.status(400).body(ResponseObject.<StudentResponse>builder()
+                    .status(400)
                     .message(e.getMessage())
                     .data(null)
                     .build());
@@ -50,14 +50,31 @@ public class StudentController {
     @GetMapping("/{group}/{n}")
     public ResponseEntity<ResponseObject<List<StudentScoreResponse>>> getTopNStudent(@PathVariable String group ,@PathVariable int n) {
         try{
-        return ResponseEntity.ok(ResponseObject.<List<StudentScoreResponse>>builder()
-                .status(200)
-                .message("Student found")
-                .data(studentService.getStudentsTopGroup(group,n))
-                .build());
+            List<StudentScoreResponse> studentScoreResponses = null;
+            switch (group) {
+                case "A":
+                    studentScoreResponses = studentService.getStudentsTopGroupA(n);
+                    break;
+                case "B":
+                    studentScoreResponses = studentService.getStudentsTopGroupB(n);
+                    break;
+                case "C":
+                    studentScoreResponses = studentService.getStudentsTopGroupC(n);
+                    break;
+                case "D":
+                    studentScoreResponses = studentService.getStudentsTopGroupD(n);
+                    break;
+                default:
+                    throw new RuntimeException("Invalid group type");
+            }
+            return ResponseEntity.ok(ResponseObject.<List<StudentScoreResponse>>builder()
+                    .status(200)
+                    .message("Student found")
+                    .data(studentScoreResponses)
+                    .build());
         } catch (RuntimeException e) {
-            return ResponseEntity.status(404).body(ResponseObject.<List<StudentScoreResponse>>builder()
-                    .status(404)
+            return ResponseEntity.status(400).body(ResponseObject.<List<StudentScoreResponse>>builder()
+                    .status(400)
                     .message(e.getMessage())
                     .data(null)
                     .build());
@@ -73,8 +90,8 @@ public class StudentController {
                     .data(studentService.getNumberStudent())
                     .build());
         } catch (RuntimeException e) {
-            return ResponseEntity.status(404).body(ResponseObject.<Object[]>builder()
-                    .status(404)
+            return ResponseEntity.status(400).body(ResponseObject.<Object[]>builder()
+                    .status(400)
                     .message(e.getMessage())
                     .data(null)
                     .build());

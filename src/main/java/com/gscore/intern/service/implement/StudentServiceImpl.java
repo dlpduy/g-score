@@ -80,37 +80,81 @@ public class StudentServiceImpl implements StudentServiceInterface {
         }
     }
 
+    // @Override
+    // public List<StudentScoreResponse> getStudentsTopGroup(String group, int n) {
+    //     List<StudentScoreResponse> students;
+    //     if (group.equals("A")) {
+    //         students = studentRepository.findTopNStudentsByGroupA(n)
+    //                         .stream()
+    //                         .limit(n)
+    //                         .collect(Collectors.toList());
+    //     } else if (group.equals("B")) {
+    //         students = studentRepository.findTopNStudentsByGroupB(n)
+    //                         .stream()
+    //                         .limit(n)
+    //                         .collect(Collectors.toList());
+    //     } else if (group.equals("C")) {
+    //         students = studentRepository.findTopNStudentsByGroupC(n)
+    //                         .stream()
+    //                         .limit(n)
+    //                         .collect(Collectors.toList());
+    //     } else if (group.equals("D")) {
+    //         students = studentRepository.findTopNStudentsByGroupD(n)
+    //                         .stream()
+    //                         .limit(n)
+    //                         .collect(Collectors.toList());
+    //     }
+    //     else {
+    //         throw new RuntimeException("Invalid group: " + group);
+    //     }
+    //     if (students.isEmpty()) {
+    //         throw new RuntimeException("No students found in group " + group);
+    //     }
+    //     return students;
+    // }
+
     @Override
-    public List<StudentScoreResponse> getStudentsTopGroup(String group, int n) {
-        List<StudentScoreResponse> students;
-        if (group.equals("A")) {
-            students = studentRepository.findTopNStudentsByGroupA(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        } else if (group.equals("B")) {
-            students = studentRepository.findTopNStudentsByGroupB(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        } else if (group.equals("C")) {
-            students = studentRepository.findTopNStudentsByGroupC(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        } else if (group.equals("D")) {
-            students = studentRepository.findTopNStudentsByGroupD(n)
-                            .stream()
-                            .limit(n)
-                            .collect(Collectors.toList());
-        }
-        else {
-            throw new RuntimeException("Invalid group: " + group);
-        }
+    public List<StudentScoreResponse> getStudentsTopGroupA(int n) {
+        List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupA(n);
         if (students.isEmpty()) {
-            throw new RuntimeException("No students found in group " + group);
+            throw new RuntimeException("No students found in group A");
         }
-        return students;
+        return students.stream()
+                .limit(n)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StudentScoreResponse> getStudentsTopGroupB(int n) {
+        List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupB(n);
+        if (students.isEmpty()) {
+            throw new RuntimeException("No students found in group B");
+        }
+        return students.stream()
+                .limit(n)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StudentScoreResponse> getStudentsTopGroupC(int n) {
+        List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupC(n);
+        if (students.isEmpty()) {
+            throw new RuntimeException("No students found in group C");
+        }
+        return students.stream()
+                .limit(n)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StudentScoreResponse> getStudentsTopGroupD(int n) {
+        List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupD(n);
+        if (students.isEmpty()) {
+            throw new RuntimeException("No students found in group D");
+        }
+        return students.stream()
+                .limit(n)
+                .collect(Collectors.toList());
     }
 
     @Override

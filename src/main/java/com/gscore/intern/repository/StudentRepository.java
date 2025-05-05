@@ -14,7 +14,7 @@ import com.gscore.intern.model.Student;
 public interface StudentRepository extends JpaRepository<Student, String> {
 
     @Query(value = """
-        SELECT st.id AS id, ROUND(SUM(sc.point), 1) AS totalScore
+        SELECT st.id AS id, ROUND(SUM(sc.point), 2) AS totalScore
         FROM students st
         JOIN scores sc ON st.id = sc.student_id
         JOIN subjects sub ON sc.subject_id = sub.id
@@ -26,7 +26,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     
 
     @Query(value = """
-        SELECT st.id AS id, ROUND(SUM(sc.point), 1) AS totalScore
+        SELECT st.id AS id, ROUND(SUM(sc.point), 2) AS totalScore
         FROM students st
         JOIN scores sc ON st.id = sc.student_id
         JOIN subjects sub ON sc.subject_id = sub.id
@@ -37,7 +37,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     List<StudentScoreResponse> findTopNStudentsByGroupB(@Param("n") int n);
 
     @Query(value = """
-        SELECT st.id AS id, ROUND(SUM(sc.point), 1) AS totalScore
+        SELECT st.id AS id, ROUND(SUM(sc.point), 2) AS totalScore
         FROM students st
         JOIN scores sc ON st.id = sc.student_id
         JOIN subjects sub ON sc.subject_id = sub.id
@@ -48,7 +48,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     List<StudentScoreResponse> findTopNStudentsByGroupC(@Param("n") int n);
 
     @Query(value = """
-        SELECT st.id AS id, ROUND(SUM(sc.point), 1) AS totalScore
+        SELECT st.id AS id, ROUND(SUM(sc.point), 2) AS totalScore
         FROM students st
         JOIN scores sc ON st.id = sc.student_id
         JOIN subjects sub ON sc.subject_id = sub.id

@@ -30,8 +30,8 @@ public class SubjectController {
                     .data(subjectService.getAllSubjectName())
                     .build());
         } catch (RuntimeException e) {
-            return ResponseEntity.status(404).body(ResponseObject.<List<SubjectResponse>>builder()
-                    .status(404)
+            return ResponseEntity.status(400).body(ResponseObject.<List<SubjectResponse>>builder()
+                    .status(400)
                     .message(e.getMessage())
                     .data(null)
                     .build());
