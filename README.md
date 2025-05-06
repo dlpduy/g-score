@@ -10,9 +10,9 @@
 
 ## 🌐 Link đã deploy
 
-- 🔗 **Frontend (FE):** [https://tracuu-gscore.vercel.app/](https://tracuu-gscore.vercel.app/)
-- 🔗 **Backend (BE):** [https://gscore-rlsi.onrender.com/api](https://gscore-rlsi.onrender.com/api)
-- 🔗 **Backend (BE) AWS:** [http://3.24.218.139:8080/api](http://3.24.218.139:8080/api) - Dùng để chạy với HTTP
+- 🔗 **Frontend (FE):** https://tracuu-gscore.vercel.app
+- 🔗 **Backend (BE):** https://gscore-rlsi.onrender.com/api
+- 🔗 **Backend (BE) AWS:** http://3.24.218.139:8080/api - Dùng để chạy với HTTP
 
 ---
 ## 📁 Cấu trúc dự án
