@@ -20,7 +20,6 @@ public class SubjectServiceImpl implements SubjectServiceInterface {
     }
     
     @Override
-    @Cacheable(value = "subjectName", key = "#root.method.name")
     public List<SubjectResponse> getAllSubjectName() {
         List<SubjectResponse> subjectResponses = subjectRepository.findAllByOrderByIdAsc().stream()
                 .map(subject -> SubjectResponse.builder()
