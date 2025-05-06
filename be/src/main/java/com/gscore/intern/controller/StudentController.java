@@ -1,5 +1,6 @@
 package com.gscore.intern.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -74,18 +75,18 @@ public class StudentController {
     }
 
     @GetMapping("/numbers")
-    public ResponseEntity<ResponseObject<Object[]>> getNumberStudent() {
+    public ResponseEntity<ResponseObject<List<Integer>>> getNumberStudent() {
         try {
-            Object[] numbers = new Object[2];
-            numbers[0] = studentService.getNumberStudentNot12();
-            numbers[1] = studentService.getNumberStudent();
-            return ResponseEntity.ok(ResponseObject.<Object[]>builder()
+            List<Integer> list = new ArrayList<>();
+            list.add(Math.toIntExact(studentService.getNumberStudentNot12()));
+            list.add(Math.toIntExact(studentService.getNumberStudent()));
+            return ResponseEntity.ok(ResponseObject.<List<Integer>>builder()
                     .status(200)
                     .message("Student found")
-                    .data(numbers)
+                    .data(list)
                     .build());
         } catch (RuntimeException e) {
-            return ResponseEntity.status(400).body(ResponseObject.<Object[]>builder()
+            return ResponseEntity.status(400).body(ResponseObject.<List<Integer>>builder()
                     .status(400)
                     .message(e.getMessage())
                     .data(null)

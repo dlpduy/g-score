@@ -102,14 +102,17 @@ public class StudentServiceImpl implements StudentServiceInterface {
 
     @Override
     @Cacheable(value = "students", key = "#root.method.name")
-    public Long getNumberStudent() {
-        return studentRepository.count();
+    public Integer getNumberStudent() {
+        //cast to Integer to avoid error when using @Cacheable
+        return (int) studentRepository.count();
     }
 
     @Override
     @Cacheable(value = "studentsnot12", key = "#root.method.name")
-    public Long getNumberStudentNot12() {
-        return studentRepository.countStudentsNot12();
+    public Integer getNumberStudentNot12() {
+        //cast to Integer to avoid error when using @Cacheable
+
+        return Math.toIntExact(studentRepository.countStudentsNot12());
     }
     
 }
