@@ -14,7 +14,7 @@
 - 🔗 **Backend (BE):** [https://gscore-rlsi.onrender.com/api](https://gscore-rlsi.onrender.com/api)
 - 🔗 **Backend (BE) AWS:** [http://3.24.218.139:8080/api](http://3.24.218.139:8080/api) - Dùng để chạy với HTTP
 
-
+<pre>
 ## 📁 Cấu trúc dự án
 
 ```
@@ -32,7 +32,7 @@ project-root/
 └── README.md       # Hướng dẫn này
 
 ```
-
+</pre>
 ---
 
 ## 🧰 Yêu cầu hệ thống
