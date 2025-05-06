@@ -2,13 +2,12 @@ import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import BarChartOne from "../../components/charts/bar/BarChartOne";
 import PageMeta from "../../components/common/PageMeta";
-import { getAllSubjects, getChartData } from "../../service/api.service";
+import { getChartData } from "../../service/api.service";
 import { useEffect, useState } from "react";
 
 export default function BarChart(props: any) {
-  const { handleNameSubject } = props;
+  const { handleNameSubject, subjects } = props;
   const [chartData, setChartData] = useState([]);
-  const [subjects, setSubjects] = useState([]);
 
   const getData = async () => {
     try {
@@ -20,18 +19,8 @@ export default function BarChart(props: any) {
     }
   };
 
-  const getSubjects = async () => {
-    try {
-      const response = await getAllSubjects();
-      console.log(response.data);
-      setSubjects(response.data);
-    } catch (error) {
-      console.error("Error fetching all subjects:", error);
-    }
-  }
 
   useEffect(() => {
-    getSubjects();
     getData();
   }, []);
 

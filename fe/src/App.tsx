@@ -5,63 +5,84 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import StudentTables from "./pages/Tables/StudentTable";
 import ScoreTables from "./pages/Tables/ScoreTable";
+import { getAllSubjects } from "./service/api.service";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const handleNameSubject = (name: string) => {
-    if (name === "toan") {
-      return "Toán";
+    switch (name) {
+      case "toan": return "Toán";
+      case "ngu_van": return "Ngữ Văn";
+      case "ngoai_ngu": return "Ngoại Ngữ";
+      case "vat_li": return "Vật Lí";
+      case "hoa_hoc": return "Hóa Học";
+      case "sinh_hoc": return "Sinh Học";
+      case "dia_li": return "Địa Lí";
+      case "lich_su": return "Lịch Sử";
+      case "gdcd": return "Giáo Dục Công Dân";
+      case "ma_ngoai_ngu": return "Mã Ngoại Ngữ";
+      default: return name;
     }
-    if (name === "ngu_van") {
-      return "Ngữ Văn";
+  };
+
+  const [subjects, setSubjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getSubjects = async () => {
+    try {
+      const response = await getAllSubjects();
+      setSubjects(response.data);
+    } catch (error) {
+      console.error("Error fetching all subjects:", error);
+    } finally {
+      setIsLoading(false);
     }
-    if (name === "ngoai_ngu") {
-      return "Ngoại Ngữ";
-    }
-    if (name === "vat_li") {
-      return "Vật Lí";
-    }
-    if (name === "hoa_hoc") {
-      return "Hóa Học";
-    }
-    if (name === "sinh_hoc") {
-      return "Sinh Học";
-    }
-    if (name === "dia_li") {
-      return "Địa Lí";
-    }
-    if (name === "lich_su") {
-      return "Lịch Sử";
-    }
-    if (name === "gdcd") {
-      return "Giáo Dục Công Dân";
-    }
-    if (name === "ma_ngoai_ngu") {
-      return "Mã Ngoại Ngữ";
-    }
+  };
+
+  useEffect(() => {
+    getSubjects();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[100vh] text-center space-y-4">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        <p className="text-lg font-semibold">Hệ thống đang khởi động, vui lòng chờ trong giây lát...</p>
+      </div>
+    );
   }
+
   return (
-    <>
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          {/* Dashboard Layout */}
-          <Route element={<AppLayout />}>
-            <Route index path="/" element={<Home />} />
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        {/* Dashboard Layout */}
+        <Route element={<AppLayout />}>
+          <Route index path="/" element={<Home />} />
 
-            {/* Tables */}
-            <Route 
+          {/* Tables */}
+          <Route 
             path="/student-tables" 
-            element={<StudentTables />} />
+            element={<StudentTables />} 
+          />
 
-            <Route 
+          <Route 
             path="/score-tables" 
-            element={<ScoreTables handleNameSubject = {handleNameSubject}  />} />
+            element={<ScoreTables handleNameSubject={handleNameSubject} />} 
+          />
 
-            {/* Charts */}
-            <Route path="/chart-dashboard" element={<BarChart handleNameSubject = {handleNameSubject}  />} />
-          </Route>
-        </Routes>
-      </Router>
-    </>
+          {/* Charts */}
+          <Route 
+            path="/chart-dashboard" 
+            element={
+              <BarChart 
+                handleNameSubject={handleNameSubject} 
+                subjects={subjects} 
+              />
+            } 
+          />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
