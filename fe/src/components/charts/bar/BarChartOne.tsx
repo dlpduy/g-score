@@ -96,13 +96,13 @@ export default function BarChartOne(props: any) {
       }));
 
     const series = [
-      { name: "Xuất sắc (≥ 8)", data: [] as number[] },
-      { name: "Giỏi (6 ≤ x < 8)", data: [] as number[] },
-      { name: "Trung bình (4 ≤ x < 6)", data: [] as number[] },
-      { name: "Yếu (< 4)", data: [] as number[] },
+      { name: "Xuất sắc (Điểm ≥ 8)", data: [] as number[] },
+      { name: "Giỏi (6 ≤ Điểm < 8)", data: [] as number[] },
+      { name: "Trung bình (4 ≤ Điểm < 6)", data: [] as number[] },
+      { name: "Yếu (Điểm < 4)", data: [] as number[] },
     ];
 
-    subjectOrder.forEach((subject:any) => {
+    subjectOrder.forEach((subject: any) => {
       const entry = data.find((d) => d.subject === subject.key);
       if (entry) {
         series[0].data.push(entry.excellent);
@@ -119,13 +119,61 @@ export default function BarChartOne(props: any) {
 
   return (
     <div className="w-full overflow-x-auto custom-scrollbar">
-      <div id="chartOne" className="w-full">
+      {/* Nút in */}
+      <div className="flex justify-end mb-4 print:hidden">
+        <button
+          onClick={() => window.print()}
+          className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-all text-sm font-medium"
+        >
+          🖨 In báo cáo
+        </button>
+      </div>
+
+      <div className="w-full print:hidden">
         <Chart
           options={options}
           series={convertChartData(chartData)}
           type="bar"
           height={400}
         />
+      </div>
+
+      <div className="hidden print:block mt-8 text-sm print:break-inside-avoid print:max-h-screen print:overflow-hidden">
+        <h2 className="text-xl font-semibold mb-4">Báo cáo thống kê thí sinh theo môn</h2>
+        <p className="mb-4 text-sm text-gray-600">
+          Thời gian in: {new Date().toLocaleString("vi-VN")}
+        </p>
+        <p className="mb-4 text-sm text-gray-600">
+          Được in tại https://example.com
+        </p>
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-3 py-2 text-left">Phân loại</th>
+                {categories.map((subject: string, index: number) => (
+                  <th key={index} className="border border-gray-300 px-3 py-2 text-center">
+                    {subject}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {convertChartData(chartData).map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td className="border border-gray-300 px-3 py-2 font-medium whitespace-nowrap">
+                  {row.name}
+                </td>
+                  {row.data.map((value, colIndex) => (
+                    <td key={colIndex} className="border border-gray-300 px-3 py-2 text-center">
+                      {formatNumber(value)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

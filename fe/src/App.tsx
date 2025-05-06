@@ -58,7 +58,7 @@ export default function App() {
             element={<ScoreTables handleNameSubject = {handleNameSubject}  />} />
 
             {/* Charts */}
-            <Route path="/bar-chart" element={<BarChart handleNameSubject = {handleNameSubject}  />} />
+            <Route path="/chart-dashboard" element={<BarChart handleNameSubject = {handleNameSubject}  />} />
           </Route>
         </Routes>
       </Router>

@@ -37,8 +37,8 @@ const navItems: NavItem[] = [
   },
   {
     icon: <PieChartIcon />,
-    name: "Thống kê môn học",
-    path: "/bar-chart"
+    name: "Thống kê theo môn học",
+    path: "/chart-dashboard"
   },
 ];
 

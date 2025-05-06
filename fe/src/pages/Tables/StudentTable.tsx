@@ -33,7 +33,7 @@ export default function StudentTables() {
 
   return (
     <>
-      <PageMeta title="Student Tables" description="This is group of students" />
+      <PageMeta title="Statistic Student" description="This is group of students" />
       <PageBreadcrumb pageTitle="Thống kê thí sinh theo khối thi" />
       
       {/* Bộ lọc và nút in */}
@@ -68,18 +68,8 @@ export default function StudentTables() {
             </select>
           </div>
         </div>
-
-        {/* Nút in */}
-        <button
-          onClick={() => window.print()}
-          className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-all text-sm font-medium"
-        >
-          🖨 In báo cáo
-        </button>
       </div>
-
-      {/* Khu vực in */}
-      <div id="print-area" className="space-y-6">
+      <div className="space-y-6">
         <ComponentCard title={`Danh sách ${studentCount} thí sinh khối ${selectedGroup} có điểm cao nhất kì thi THPT Quốc Gia 2024`}>
           <StudentTableOne studentData={studentData} />
         </ComponentCard>
