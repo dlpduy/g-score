@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-
-import { Link } from "react-router";
+import {useState } from "react";
 import { useSidebar } from "../context/SidebarContext";
 
 const AppHeader: React.FC = () => {
-  const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
+  const [isApplicationMenuOpen] = useState(false);
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
 
