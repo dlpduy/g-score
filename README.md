@@ -56,13 +56,14 @@ project-root/
 2. Ghi lại thông tin để dùng trong cấu hình Spring Boot backend.
 
 ---
-
+````
 ## ⚙️ Hướng dẫn chạy Backend (Spring Boot)
 
 ### Bước 1: Di chuyển vào thư mục backend
 ```bash
 cd be
-````
+```
+
 
 ### Bước 2: Cấu hình `application.properties` hoặc `application.yml`
 
