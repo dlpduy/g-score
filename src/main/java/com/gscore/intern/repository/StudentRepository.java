@@ -60,20 +60,12 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     @Query(value = """
         SELECT 
-            COUNT(CASE WHEN subject_count = 7 THEN 1 END) AS studentsWith7Subjects,
-            COUNT(CASE WHEN subject_count < 7 THEN 1 END) AS studentsWithLessThan7Subjects
+            COUNT(CASE WHEN subject_count < 7 THEN 1 END) AS studentsWith7Subjects
         FROM (
-            SELECT st.id, COUNT(DISTINCT sub.name) AS subject_count
-            FROM students st
-            JOIN scores sc ON st.id = sc.student_id
-            JOIN subjects sub ON sc.subject_id = sub.id
-            GROUP BY st.id
-        ) AS subquery
+            SELECT student_id, COUNT(DISTINCT subject_id) AS subject_count
+            FROM scores
+            GROUP BY student_id
+        ) AS subquery;
         """, nativeQuery = true)
-    Object[] countStudents();
-    
-
-
-
-
+    Long countStudentsNot12();
 }

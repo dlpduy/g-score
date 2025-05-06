@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.gscore.intern.dto.response.ScoreSubject;
@@ -52,6 +53,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
     }
 
     @Override
+    @Cacheable(value = "studentsA", key = "#root.method.name + #n")
     public List<StudentScoreResponse> getStudentsTopGroupA(int n) {
         List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupA(n);
         if (students.isEmpty()) {
@@ -63,6 +65,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
     }
 
     @Override
+    @Cacheable(value = "studentsB", key = "#root.method.name + #n")
     public List<StudentScoreResponse> getStudentsTopGroupB(int n) {
         List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupB(n);
         if (students.isEmpty()) {
@@ -74,6 +77,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
     }
 
     @Override
+    @Cacheable(value = "studentsC", key = "#root.method.name + #n")
     public List<StudentScoreResponse> getStudentsTopGroupC(int n) {
         List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupC(n);
         if (students.isEmpty()) {
@@ -85,6 +89,7 @@ public class StudentServiceImpl implements StudentServiceInterface {
     }
 
     @Override
+    @Cacheable(value = "studentsD", key = "#root.method.name + #n")
     public List<StudentScoreResponse> getStudentsTopGroupD(int n) {
         List<StudentScoreResponse> students = studentRepository.findTopNStudentsByGroupD(n);
         if (students.isEmpty()) {
@@ -96,9 +101,15 @@ public class StudentServiceImpl implements StudentServiceInterface {
     }
 
     @Override
-    public Object[] getNumberStudent() {
-        return studentRepository.countStudents();
+    @Cacheable(value = "students", key = "#root.method.name")
+    public Long getNumberStudent() {
+        return studentRepository.count();
     }
 
+    @Override
+    @Cacheable(value = "studentsnot12", key = "#root.method.name")
+    public Long getNumberStudentNot12() {
+        return studentRepository.countStudentsNot12();
+    }
     
 }

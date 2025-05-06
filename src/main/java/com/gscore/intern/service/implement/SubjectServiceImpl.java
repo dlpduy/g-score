@@ -2,6 +2,7 @@ package com.gscore.intern.service.implement;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.gscore.intern.dto.response.SubjectResponse;
@@ -19,6 +20,7 @@ public class SubjectServiceImpl implements SubjectServiceInterface {
     }
     
     @Override
+    @Cacheable(value = "subjectName", key = "#root.method.name")
     public List<SubjectResponse> getAllSubjectName() {
         List<SubjectResponse> subjectResponses = subjectRepository.findAllByOrderByIdAsc().stream()
                 .map(subject -> SubjectResponse.builder()

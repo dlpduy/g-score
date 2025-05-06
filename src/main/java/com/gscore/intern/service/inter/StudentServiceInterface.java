@@ -11,5 +11,6 @@ public interface StudentServiceInterface {
     List<StudentScoreResponse> getStudentsTopGroupB(int n);
     List<StudentScoreResponse> getStudentsTopGroupC(int n);
     List<StudentScoreResponse> getStudentsTopGroupD(int n);
-    Object[] getNumberStudent();
+    Long getNumberStudentNot12();
+    Long getNumberStudent();
 }

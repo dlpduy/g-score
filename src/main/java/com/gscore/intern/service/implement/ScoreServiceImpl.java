@@ -2,6 +2,7 @@ package com.gscore.intern.service.implement;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.gscore.intern.dto.response.ScoreLevelReport;
@@ -18,6 +19,7 @@ public class ScoreServiceImpl implements ScoreServiceInterface {
 
 
     @Override
+    @Cacheable(value = "scoreLevelReport", key = "#root.method.name")
     public List<ScoreLevelReport> getScoreLevelReport() {
         return scoreRepository.getScoreLevelReport();
     }

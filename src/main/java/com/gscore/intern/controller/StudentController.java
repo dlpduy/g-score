@@ -76,10 +76,13 @@ public class StudentController {
     @GetMapping("/numbers")
     public ResponseEntity<ResponseObject<Object[]>> getNumberStudent() {
         try {
+            Object[] numbers = new Object[2];
+            numbers[0] = studentService.getNumberStudentNot12();
+            numbers[1] = studentService.getNumberStudent();
             return ResponseEntity.ok(ResponseObject.<Object[]>builder()
                     .status(200)
                     .message("Student found")
-                    .data(studentService.getNumberStudent())
+                    .data(numbers)
                     .build());
         } catch (RuntimeException e) {
             return ResponseEntity.status(400).body(ResponseObject.<Object[]>builder()
