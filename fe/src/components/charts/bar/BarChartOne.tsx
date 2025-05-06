@@ -139,12 +139,12 @@ export default function BarChartOne(props: any) {
       </div>
 
       <div className="hidden print:block mt-8 text-sm print:break-inside-avoid print:max-h-screen print:overflow-hidden">
-        <h2 className="text-xl font-semibold mb-4">Báo cáo thống kê thí sinh theo môn</h2>
+        <h2 className="text-3xl font-semibold mb-4 text-center">Báo cáo phân loại thí sinh theo môn học</h2>
         <p className="mb-4 text-sm text-gray-600">
           Thời gian in: {new Date().toLocaleString("vi-VN")}
         </p>
         <p className="mb-4 text-sm text-gray-600">
-          Được in tại https://example.com
+          Được in tại https://tracuu-gscore.vercel.app/
         </p>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300">

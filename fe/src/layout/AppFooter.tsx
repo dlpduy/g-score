@@ -7,7 +7,7 @@ const AppFooter = () => {
             {/* Left Column */}
             <div className="flex flex-col items-center">
               <h4 className="text-2xl font-semibold text-center">Giới thiệu</h4>
-              <p className="mt-4 text-sm text-left">
+              <p className="mt-4 text-sm text-center">
                 Đây là website quản lý điểm thi và thống kê thí sinh, phục vụ cho nhu cầu tra cứu điểm và thống kê dữ liệu thí sinh một cách nhanh chóng và chính xác.
               </p>
             </div>
@@ -17,8 +17,8 @@ const AppFooter = () => {
               <h4 className="text-2xl font-semibold text-center">Liên hệ</h4>
               <ul className="mt-4 text-sm space-y-2 text-left">
                 <li>Email: <a href="mailto:dinhlephucduy@gmail.com" className="text-blue-600">dinhlephucduy@gmail.com</a></li>
-                <li>Phone: <a href="tel:+84796865609" className="text-blue-600">0796865609</a></li>
-                <li>Address: Thủ Đức - TP.Hồ Chí Minh</li>
+                <li>Số điện thoại: <a href="tel:+84796865609" className="text-blue-600">0796865609</a></li>
+                <li>Địa chỉ: Thủ Đức - TP.Hồ Chí Minh</li>
               </ul>
             </div>
   
