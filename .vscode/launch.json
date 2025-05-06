@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-InternApplication<intern>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.gscore.intern.InternApplication",
+            "projectName": "intern",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
