@@ -11,7 +11,7 @@ export default function SearchInput({
   ...props
 }: SearchInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-    const { searchKeyword,setSearchKeyword } = props as SearchInputProps & {
+    const { setSearchKeyword } = props as SearchInputProps & {
         searchKeyword: string;
         setSearchKeyword: (keyword: string) => void;
     };
