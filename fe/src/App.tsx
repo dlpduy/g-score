@@ -47,7 +47,7 @@ export default function App() {
     return (
       <div className="flex flex-col items-center justify-center h-[100vh] text-center space-y-4">
         <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-        <p className="text-lg font-semibold">Hệ thống đang khởi động, vui lòng chờ trong giây lát...</p>
+        <p className="text-lg font-semibold">Vui lòng chờ trong giây lát...</p>
       </div>
     );
   }
